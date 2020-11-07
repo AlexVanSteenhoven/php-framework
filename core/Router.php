@@ -50,7 +50,7 @@ class Router
         if ($callback === false) {
             $this->response->setStatusCode(404);
             try {
-                return $this->blade->run('404');
+                return $this->blade->run('errors.404');
             } catch (\Exception $e) {
                 return $e->getMessage();
             }
@@ -60,13 +60,17 @@ class Router
             return $this->renderView($callback);
         }
 
-        return call_user_func($callback);
+        if (is_array($callback)) {
+            $callback[0] = new $callback[0];
+        }
+
+        return call_user_func($callback, $this->request);
     }
 
-    public function renderView($view)
+    public function renderView($view, $params = [])
     {
         try {
-            return $this->blade->run($view);
+            return $this->blade->run($view, $params);
         } catch (\Exception $e) {
             return $e->getMessage();
         }
