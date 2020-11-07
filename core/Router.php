@@ -36,6 +36,11 @@ class Router
         $this->routes['get'][$path] = $callback;
     }
 
+    public function post($path, $callback)
+    {
+        $this->routes['post'][$path] = $callback;
+    }
+
     public function resolve()
     {
         $path = $this->request->getPath();
@@ -58,7 +63,7 @@ class Router
         return call_user_func($callback);
     }
 
-    private function renderView($view)
+    public function renderView($view)
     {
         try {
             return $this->blade->run($view);
