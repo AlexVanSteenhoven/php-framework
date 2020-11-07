@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container">
-    <h1 class="text-center">Welcome {{ $name }}</h1>
+    <h1 class="text-center">Login</h1>
     </div>
 @endsection
