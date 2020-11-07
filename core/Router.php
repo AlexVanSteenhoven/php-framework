@@ -12,11 +12,22 @@ class Router
 {
     protected array $routes = [];
     public Request $request;
+    public Response $response;
 
-    /** @param Request $request */
-    public function __construct(Request $request)
+    // Rendering views
+    protected string $views = __DIR__ . '/../views';
+    protected string $cache = __DIR__ . '/../runtime/cache';
+    protected BladeOne $blade;
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     */
+    public function __construct(Request $request, Response $response)
     {
+        $this->blade = new BladeOne($this->views, $this->cache, BladeOne::MODE_DEBUG);
         $this->request = $request;
+        $this->response = $response;
     }
 
     public function get($path, $callback)
@@ -31,7 +42,12 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback === false) {
-            return "Not found";
+            $this->response->setStatusCode(404);
+            try {
+                return $this->blade->run('404');
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
         }
 
         if (is_string($callback)) {
@@ -43,12 +59,8 @@ class Router
 
     private function renderView($view)
     {
-        $views = __DIR__ . '/../views';
-        $cache = __DIR__ . '/../runtime/cache';
-
-        $blade = new BladeOne($views, $cache, BladeOne::MODE_DEBUG);
         try {
-            return $blade->run($view);
+            return $this->blade->run($view);
         } catch (\Exception $e) {
             return $e->getMessage();
         }
