@@ -1,0 +1,22 @@
+{
+  "name": "alexs/mvc-framework",
+  "description": "A custom MVC framework build from scratch",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alex van Steenhoven",
+      "email": "alex.steenhoven@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "alex\\": "./"
+    }
+  },
+  "require": {
+    "eftec/bladeone": "^3.47",
+    "vlucas/phpdotenv": "^5.2"
+  }
+}
