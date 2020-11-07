@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/404.css">
 </head>
 <body>
-@yield('content');
+@yield('content')
 
 {{-- Incluce Javascript --}}
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
