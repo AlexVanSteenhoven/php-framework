@@ -7,7 +7,7 @@
             <h1>Oops!</h1>
             <h2>404 - The Page can't be found</h2>
         </div>
-        <a href="/">Go to the homepage</a>
+        <a href="#" onclick="goBack()">Go Back to previous page</button>
     </div>
 </div>
 @endsection
