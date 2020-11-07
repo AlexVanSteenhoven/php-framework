@@ -1,7 +1,8 @@
 <?php
+
 /** @author: Alex van Steenhoven <alex.steenhoven@gmail.com> */
 
-use alex\core\Application;
+use app\core\Application;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

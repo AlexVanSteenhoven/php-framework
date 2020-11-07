@@ -1,10 +1,11 @@
 <?php
+
 /**
  * @author: Alex van Steenhoven <alex.steenhoven@gmail.com>
- * @package alex\core
+ * @package app\core
  */
 
-namespace alex\core;
+namespace app\core;
 
 use eftec\bladeone\BladeOne;
 

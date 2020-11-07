@@ -2,10 +2,10 @@
 
 /**
  * @author Alex van Steenhoven <alex.steenhoven@gmail.com
- * @package alex\core
+ * @package app\core
  */
 
-namespace alex\core;
+namespace app\core;
 
 class Request
 {
@@ -25,5 +25,4 @@ class Request
     {
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
-
 }
