@@ -27,13 +27,19 @@
                       <label for="email">Email address</label>
                       <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
                     </div>
-                    <div class="form-group">
-                      <label for="password">Password</label>
-                      <input type="password" class="form-control" name="password" id="password" placeholder="password">
-                    </div>
-                    <div class="form-group">
-                      <label for="confirmPassword">Confirm Password</label>
-                      <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="confirm password">
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="password">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="confirm password">
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
