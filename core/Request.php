@@ -7,7 +7,7 @@
 
 namespace app\core;
 
-class Request
+class   Request
 {
     public function getPath()
     {
