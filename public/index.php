@@ -18,8 +18,8 @@ $app->router->post('/contact', [ContactController::class, 'handleContact']);
 
 // Auth routes
 $app->router->get('/login', [AuthController::class, 'login']);
-$app->router->get('/register', [AuthController::class, 'register']);
 $app->router->post('/login', [AuthController::class, 'login']);
+$app->router->get('/register', [AuthController::class, 'register']);
 $app->router->post('/register', [AuthController::class, 'register']);
 
 $app->run();
