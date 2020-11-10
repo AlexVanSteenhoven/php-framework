@@ -80,6 +80,11 @@ class Database
         $stmt->execute();
     }
 
+    public function prepare($sql)
+    {
+        return $this->pdo->prepare($sql);
+    }
+
     protected function log($message)
     {
         date_default_timezone_set('Europe/Amsterdam');
