@@ -9,7 +9,21 @@ use app\controllers\ContactController;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$app = new Application();
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 1));
+$dotenv->load();
+
+$config = [
+    'db' => [
+        'connection' => $_ENV['DB_CONNECTION'],
+        'host' => $_ENV['DB_HOST'],
+        'port' => $_ENV['DB_PORT'],
+        'dbname' => $_ENV['DB_DATABASE'],
+        'username' => $_ENV['DB_USERNAME'],
+        'password' => $_ENV['DB_PASSWORD']
+    ]
+];
+
+$app = new Application(dirname(__DIR__, 1), $config);
 
 // Routes
 $app->router->get('/', [HomeController::class, 'viewHome']);
