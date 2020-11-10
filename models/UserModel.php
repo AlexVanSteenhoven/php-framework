@@ -7,9 +7,9 @@
 
 namespace app\models;
 
-use app\core\Model;
+use app\core\DatabaseModel;
 
-class RegisterModel extends Model
+class RegisterModel extends DatabaseModel
 {
     public string $firstname = '';
     public string $lastname = '';

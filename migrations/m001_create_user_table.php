@@ -16,6 +16,7 @@ class m001_create_user_table
             firstname VARCHAR(30) NOT NULL,
             lastname VARCHAR(50) NOT NULL,
             `password` VARCHAR(255) NOT NULL,
+            `status` INT(3) NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=INNODB;";
         $database->pdo->exec($sql);
     }
