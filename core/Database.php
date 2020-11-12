@@ -8,6 +8,8 @@
 namespace app\core;
 
 use \PDO;
+use Codedungeon\PHPCliColors\Color;
+
 
 class Database
 {
@@ -80,6 +82,30 @@ class Database
         $stmt->execute();
     }
 
+    public function resetDatabase()
+    {
+        $stmt_users = $this->prepare("DROP TABLE users");
+        $stmt_users->execute();
+
+        $this->log("Deleted users table");
+
+        $stmt_migrations = $this->prepare("DROP TABLE migrations");
+        $stmt_migrations->execute();
+
+        $this->log("Deleted migrations table");
+    }
+
+    public function cleanDatabase()
+    {
+        $stmt_users = $this->prepare("DELETE FROM users");
+        $stmt_users->execute();
+        $this->log("Cleaned Data from users table (empty table)");
+
+        $stmt_migrations = $this->prepare("DELETE FROM migrations");
+        $stmt_migrations->execute();
+        $this->log("Cleaned Data from migrations table (empty table)");
+    }
+
     public function prepare($sql)
     {
         return $this->pdo->prepare($sql);
@@ -88,6 +114,6 @@ class Database
     protected function log($message)
     {
         date_default_timezone_set('Europe/Amsterdam');
-        echo '[' . date('d-m-Y H:i:s') . '] ' . $message . PHP_EOL;
+        echo Color::LIGHT_GREEN . '[' . date('d-m-Y H:i:s') . '] ' . Color::RESET . $message . PHP_EOL;
     }
 }

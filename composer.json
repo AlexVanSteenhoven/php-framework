@@ -17,6 +17,7 @@
   },
   "require": {
     "eftec/bladeone": "^3.47",
-    "vlucas/phpdotenv": "^5.2"
+    "vlucas/phpdotenv": "^5.2",
+    "codedungeon/php-cli-colors": "^1.11"
   }
 }

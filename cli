@@ -1,0 +1,49 @@
+<?php
+
+/** @author: Alex van Steenhoven <alex.steenhoven@gmail.com> */
+
+use app\core\Application;
+use Codedungeon\PHPCliColors\Color;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$config = [
+    'db' => [
+        'connection' => $_ENV['DB_CONNECTION'],
+        'host' => $_ENV['DB_HOST'],
+        'port' => $_ENV['DB_PORT'],
+        'dbname' => $_ENV['DB_DATABASE'],
+        'username' => $_ENV['DB_USERNAME'],
+        'password' => $_ENV['DB_PASSWORD']
+    ]
+];
+
+$app = new Application(__DIR__, $config);
+
+if (empty($argv[1])) {
+    echo Color::LIGHT_CYAN . "Specify an action:" . Color::RESET . PHP_EOL;
+    echo PHP_EOL;
+    echo Color::LIGHT_CYAN . "Database:" . Color::RESET . PHP_EOL;
+    echo "1) 'migrate' database (Migrates all migrations in the migrations folder)" . PHP_EOL;
+    echo "2) 'reset' database (Dropping all tables in the database)" . PHP_EOL;
+    echo "3) 'clean' database. (Removing all data from all tables)" . PHP_EOL;
+}
+
+if (!isset($argv[1])) {
+    $argv[1] = null;
+}
+
+if ($argv[1] == 'migrate') {
+    Application::$app->database->applyMigrations();
+}
+
+if ($argv[1] == 'reset') {
+    Application::$app->database->resetDatabase();
+}
+
+if ($argv[1] == 'clean') {
+    Application::$app->database->cleanDatabase();
+}
