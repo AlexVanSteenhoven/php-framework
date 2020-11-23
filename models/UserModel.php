@@ -27,6 +27,11 @@ class UserModel extends DatabaseModel
         return 'users';
     }
 
+    public function primaryKey(): string
+    {
+        return 'id';
+    }
+
     public function save()
     {
         $this->status = self::STATUS_INACTIVE;
@@ -60,5 +65,10 @@ class UserModel extends DatabaseModel
             'password' => 'Password:',
             'confirmPassword' => 'Confirm password:'
         ];
+    }
+
+    public function getDisplayName()
+    {
+        return $this->firstname . " " . $this->lastname;
     }
 }

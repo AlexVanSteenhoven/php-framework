@@ -29,6 +29,7 @@
                 <a class="nav-link" href="/contact">contact</a>
             </li>
         </ul>
+        @if (\app\core\Application::isGuest())
         <ul class="navbar-nav ml-auto">
             <li class="nav-item pr-2">
                 <a class="nav-link" href="/login">
@@ -43,6 +44,22 @@
                 </a>
             </li>
         </ul>
+        @else
+            <ul class="navbar-nav ml-auto"
+                <li class="nav-item">
+                    <a class="nav-link" href="/account"
+                        <i class="fas fa-user"></i>
+                        Welkom @php echo \app\core\Application::$app->user->getDisplayName(); @endphp
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        @endif
     </div>
 </nav>
 <main class="py-5">

@@ -8,6 +8,10 @@
         </div>
         @endif
 
-        <h1 class="text-center">Welcome {{ $name }}</h1>
+        @if (!\app\core\Application::isGuest())
+            <h1 class="text-center">Welkom @php echo \app\core\Application::$app->user->getDisplayName(); @endphp </h1>
+        @else
+            <h1 class="text-center">Welkom Gebruiker</h1>
+        @endif
     </div>
 @endsection

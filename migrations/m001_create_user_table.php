@@ -10,7 +10,7 @@ class m001_create_user_table
     {
         $database = Application::$app->database;
 
-        $sql = "CREATE TABLE users (
+        $sql = "CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             email VARCHAR(70) UNIQUE NOT NULL,
             firstname VARCHAR(30) NOT NULL,
