@@ -7,6 +7,7 @@
 
 namespace app\core;
 
+use app\core\exception\NotFoundException;
 use eftec\bladeone\BladeOne;
 
 class Router
@@ -48,12 +49,7 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback === false) {
-            $this->response->setStatusCode(404);
-            try {
-                return $this->blade->run('errors.404');
-            } catch (\Exception $e) {
-                return $e->getMessage();
-            }
+            throw new NotFoundException();
         }
 
         if (is_string($callback)) {
@@ -61,7 +57,16 @@ class Router
         }
 
         if (is_array($callback)) {
-            $callback[0] = new $callback[0];
+            /** @var Controller $controller */
+            $controller = new $callback[0]();
+            Application::$app->controller = $controller;
+            $controller->action = $callback[1];
+            $callback[0] = $controller;
+
+            foreach ($controller->getMiddlewares() as $middleware) {
+                $middleware->execute();
+            }
+
         }
 
         return call_user_func($callback, $this->request, $this->response);

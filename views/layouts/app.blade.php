@@ -45,11 +45,16 @@
             </li>
         </ul>
         @else
-            <ul class="navbar-nav ml-auto"
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/account"
-                        <i class="fas fa-user"></i>
+                    <a class="nav-link" href="#">
                         Welkom @php echo \app\core\Application::$app->user->getDisplayName(); @endphp
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">
+                        <i class="fas fa-user"></i>
+                        Profile
                     </a>
                 </li>
                 <li class="nav-item">

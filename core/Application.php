@@ -47,17 +47,24 @@ class Application
 
     public function run()
     {
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        } catch (\Exception $e) {
+            $this->response->setStatusCode($e->getCode());
+            echo $this->router->renderView('error', [
+                'exception' => $e
+            ]);
+        }
     }
 
-    /** @return \app\core\Controller */
-    public function getController(): \app\core\Controller
+    /** @return Controller */
+    public function getController(): Controller
     {
         return $this->controller;
     }
 
-    /** @param \app\core\Controller $controller */
-    public function setController(\app\core\Controller $controller): void
+    /** @param Controller $controller */
+    public function setController(Controller $controller): void
     {
         $this->controller = $controller;
     }
