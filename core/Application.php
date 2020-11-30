@@ -7,6 +7,8 @@
 
 namespace app\core;
 
+use Exception;
+
 class Application
 {
     public static string $root_dir;
@@ -49,7 +51,7 @@ class Application
     {
         try {
             echo $this->router->resolve();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->response->setStatusCode($e->getCode());
             echo $this->router->renderView('error', [
                 'exception' => $e
